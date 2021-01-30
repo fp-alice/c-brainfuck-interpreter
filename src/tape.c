@@ -55,7 +55,7 @@ void double_cell_capacity(tape_t* tape)
 {
     size_t new_size = tape->num_cells*2;
     tape->data = realloc(tape->data, new_size);
-    memset(tape->data+tape->num_cells, 0, new_size);
+    memset(tape->data+tape->num_cells, 0, new_size - tape->num_cells);
     tape->num_cells = new_size;
 }
 
