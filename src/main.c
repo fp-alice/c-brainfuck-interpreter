@@ -28,8 +28,8 @@ void run_program(tape_t* tape)
 
 int main()
 {
-    tape_t tape = create_tape(FILE_PATH);
-    run_program(&tape);
-    free_tape(&tape);
+    tape_t* tape = create_tape(FILE_PATH);
+    run_program(tape);
+    free_tape(tape);
     return 0;
 }

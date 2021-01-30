@@ -16,7 +16,7 @@ typedef struct {
   size_t data_pointer;
 } tape_t;
 
-tape_t create_tape(const char* file_path);
+tape_t* create_tape(const char* file_path);
 void free_tape(tape_t* tape);
 void tape_right(tape_t* tape);
 void tape_left(tape_t* tape);

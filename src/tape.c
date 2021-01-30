@@ -37,16 +37,16 @@ char* read_file(const char* file_name)
     return contents;
 }
 
-tape_t create_tape(const char* file_path)
+tape_t * create_tape(const char* file_path)
 {
-    tape_t tape;
-    tape.instructions = read_file(file_path);
-    tape.current_instruction = tape.instructions[0];
-    tape.instructions_length = strlen(tape.instructions);
-    tape.instruction_pointer = 0;
-    tape.data = malloc(30000);
-    memset(tape.data, 0, 30000);
-    tape.data_pointer = 0;
+    tape_t * tape = malloc(sizeof(tape_t));
+    tape->instructions = read_file(file_path);
+    tape->current_instruction = tape->instructions[0];
+    tape->instructions_length = strlen(tape->instructions);
+    tape->instruction_pointer = 0;
+    tape->data = malloc(30000);
+    memset(tape->data, 0, 30000);
+    tape->data_pointer = 0;
     return tape;
 }
 
