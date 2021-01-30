@@ -5,7 +5,7 @@
 #ifndef C_BF_TAPE_H
 #define C_BF_TAPE_H
 
-#include <stdlib.h>
+#include <stddef.h>
 
 typedef struct {
   char* instructions;
