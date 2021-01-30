@@ -4,7 +4,7 @@ const char* FILE_PATH = "../helloworld.bf";
 
 void run_program(tape_t* tape)
 {
-    while (tape->instructions_length>=tape->instruction_pointer) {
+    while (tape->instructions_length > tape->instruction_pointer) {
         switch (tape->instructions[tape->instruction_pointer]) {
         case '>':tape_right(tape);
             break;
