@@ -14,10 +14,12 @@ typedef struct {
   char current_instruction;
   char* data;
   size_t data_pointer;
+  size_t num_cells;
 } tape_t;
 
 tape_t* create_tape(const char* file_path);
 void free_tape(tape_t* tape);
+void advance_tape(tape_t* tape);
 void tape_right(tape_t* tape);
 void tape_left(tape_t* tape);
 void tape_increment(tape_t* tape);

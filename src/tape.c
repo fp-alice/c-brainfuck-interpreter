@@ -37,17 +37,26 @@ char* read_file(const char* file_name)
     return contents;
 }
 
-tape_t * create_tape(const char* file_path)
+tape_t* create_tape(const char* file_path)
 {
-    tape_t * tape = malloc(sizeof(tape_t));
+    tape_t* tape = malloc(sizeof(tape_t));
     tape->instructions = read_file(file_path);
+    tape->num_cells = 1024;
     tape->current_instruction = tape->instructions[0];
     tape->instructions_length = strlen(tape->instructions);
     tape->instruction_pointer = 0;
-    tape->data = malloc(30000);
-    memset(tape->data, 0, 30000);
+    tape->data = malloc(tape->num_cells);
+    memset(tape->data, 0, tape->num_cells);
     tape->data_pointer = 0;
     return tape;
+}
+
+void double_cell_capacity(tape_t* tape)
+{
+    size_t new_size = tape->num_cells*2;
+    tape->data = realloc(tape->data, new_size);
+    memset(tape->data+tape->num_cells, 0, new_size);
+    tape->num_cells = new_size;
 }
 
 void free_tape(tape_t* tape)
@@ -69,6 +78,7 @@ void rewind_tape(tape_t* tape)
 
 void tape_right(tape_t* tape)
 {
+    if (tape->data_pointer == tape->num_cells - 1) double_cell_capacity(tape);
     ++tape->data_pointer;
     advance_tape(tape);
 }
